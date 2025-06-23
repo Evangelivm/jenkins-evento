@@ -51,6 +51,12 @@ presionas a la izquierda en la opcion de Pipeline
 
 aqui sigue esto:
 
+En Triggers:
+
+Selecciona: GitHub hook trigger for GITScm polling
+
+En Pipeline:
+
 Definition: Pipeline script from SCM
 SCM: Git
 Repository URL: https://github.com/<tu-repo>

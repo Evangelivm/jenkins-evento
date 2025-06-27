@@ -83,9 +83,19 @@ este tutorial esta en un primera fase, en el futuro colocare imagenes
 
 instrucciones para el uso de variables de entorno:
 
-en jenkins vas "Administrar Jenkins", luego a "Credentials"
+como usaras varios proyectos (o quiza no) es mejor crear cada tarea dentro de una carpeta de jenkins
 
-haces click en System y luego en Global credentials (unrestricted)
+vas a Nueva Tarea, colocas un nombre y luego seleccionas Folder
+
+Si ya creaste alguna tarea, en el panel de control solo acercas el mouse al lado del nombre de la tarea, y seleccionas Move
+
+Ahi seleccionas el nombre de la carpeta y presionas en Move
+
+La razon por la que se usa carpetas es para que cada tarea trabaje con sus propias variables de entorno y que el alcance de estas sea dentro de la carpeta
+
+dentro de la carpeta, vas a credentials, luego donde dice Stores scoped to (nombre de la carpeta) haces click al nombre debajo de Store
+
+luego en Global credentials (unrestricted)
 
 haces click en Add Credentials y colocas de esta manera:
 

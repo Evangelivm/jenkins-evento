@@ -81,7 +81,7 @@ en el panel de jenkins le presionas a "contruir ahora"
 
 este tutorial esta en un primera fase, en el futuro colocare imagenes
 
-instrucciones para el uso de variables de entorno:
+--instrucciones para el uso de variables de entorno:
 
 como usaras varios proyectos (o quiza no) es mejor crear cada tarea dentro de una carpeta de jenkins
 
@@ -122,7 +122,7 @@ stage('Preparar entorno') {
 steps {
 echo '🔹 STAGE 1: Deteniendo contenedores anteriores y limpiando'
 sh '''
-cd /var/jenkins_home/workspace/(nombre del proyecto)
+cd /var/jenkins_home/workspace/(nombre de la carpeta creada en Jenkins)/(nombre del proyecto)
 docker compose down || echo "No había contenedores corriendo"
 '''
 }
@@ -132,7 +132,7 @@ docker compose down || echo "No había contenedores corriendo"
             steps {
                 echo '🔹 STAGE 2: Obteniendo última versión del código'
                 sh '''
-                cd /var/jenkins_home/workspace/(nombre del proyecto)
+                cd /var/jenkins_home/workspace/(nombre de la carpeta creada en Jenkins)/(nombre del proyecto)
                 git pull origin master
                 echo "✅ Código actualizado"
                 '''
@@ -143,7 +143,7 @@ docker compose down || echo "No había contenedores corriendo"
             steps {
                 echo '🔹 STAGE 3: Construyendo imagen Docker con variables de entorno'
                 sh '''
-                cd /var/jenkins_home/workspace/(nombre del proyecto)
+                cd /var/jenkins_home/workspace/(nombre de la carpeta creada en Jenkins)/(nombre del proyecto)
                 docker compose build --no-cache \
 
                 (Aqui se colocan las variables de entorno que se obtuvieron en el paso anterior. Ejm:
@@ -159,7 +159,7 @@ docker compose down || echo "No había contenedores corriendo"
             steps {
                 echo '🔹 STAGE 4: Iniciando contenedores'
                 sh '''
-                cd /var/jenkins_home/workspace/(nombre del proyecto)
+                cd /var/jenkins_home/workspace/(nombre de la carpeta creada en Jenkins)/(nombre del proyecto)
                 docker compose up -d
                 echo "🚀 Aplicación desplegada en http://<tu-servidor>:3002"
                 '''
@@ -170,7 +170,7 @@ docker compose down || echo "No había contenedores corriendo"
             steps {
                 echo '🔹 STAGE 5: Comprobando estado del contenedor'
                 sh '''
-                cd /var/jenkins_home/workspace/(nombre del proyecto)
+                cd /var/jenkins_home/workspace/(nombre de la carpeta creada en Jenkins)/(nombre del proyecto)
                 docker ps --filter "name=app" --format "{{.Status}}"
                 '''
                 echo "✔️ Pipeline completado"
